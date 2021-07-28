@@ -56,11 +56,9 @@ struct PopularRestaurantsView: View {
                                 Text("Tokyo, Japan")
                             }.font(.system(size: 12, weight: .semibold))
                         }
-                            .frame(width: 240)
-                            .background(Color.white)
-                                .cornerRadius(5)
-                            .shadow(color: .init(.sRGB, white: 0.8, opacity: 1), radius: 4, x: 0.0, y: 2)
-                            .padding(.bottom)
+                        .frame(width: 240)
+                        .modifier(TileModifer())
+                        .padding(.bottom)
                     }
                 }.padding(.horizontal)
             }

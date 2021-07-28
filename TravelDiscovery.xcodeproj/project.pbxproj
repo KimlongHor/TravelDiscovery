@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		602B417826B1F2D500446D1C /* TileModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602B417726B1F2D500446D1C /* TileModifier.swift */; };
 		605F2AA326AF53F20060809F /* TravelDiscoveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F2AA226AF53F20060809F /* TravelDiscoveryApp.swift */; };
 		605F2AA526AF53F20060809F /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F2AA426AF53F20060809F /* DiscoverView.swift */; };
 		605F2AA726AF53F40060809F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605F2AA626AF53F40060809F /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		602B417726B1F2D500446D1C /* TileModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileModifier.swift; sourceTree = "<group>"; };
 		605F2A9F26AF53F20060809F /* TravelDiscovery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelDiscovery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		605F2AA226AF53F20060809F /* TravelDiscoveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDiscoveryApp.swift; sourceTree = "<group>"; };
 		605F2AA426AF53F20060809F /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		602B417626B1F2B500446D1C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				602B417726B1F2D500446D1C /* TileModifier.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		605F2A9626AF53F20060809F = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +78,7 @@
 		605F2AA126AF53F20060809F /* TravelDiscovery */ = {
 			isa = PBXGroup;
 			children = (
+				602B417626B1F2B500446D1C /* Utilities */,
 				60B20D6426B0ADF2005267AE /* Models */,
 				60B20D5026B0AABA005267AE /* Discover */,
 				605F2AA226AF53F20060809F /* TravelDiscoveryApp.swift */,
@@ -179,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60B20D5D26B0AD58005267AE /* DiscoverCategoriesView.swift in Sources */,
+				602B417826B1F2D500446D1C /* TileModifier.swift in Sources */,
 				60B20D6F26B0AE5A005267AE /* Category.swift in Sources */,
 				60B20D5726B0AC28005267AE /* PopularDestinationsView.swift in Sources */,
 				60B20D6126B0ADA4005267AE /* TrendingCreatorsView.swift in Sources */,
