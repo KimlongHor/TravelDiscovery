@@ -7,11 +7,23 @@
 
 import SwiftUI
 
+// Content is just a generic var
+
+struct NavigationLazyView<Content: View>: View {
+    let build: () -> Content
+    init(_ build: @autoclosure @escaping () -> Content) {
+        self.build = build
+    }
+    var body: Content {
+        build()
+    }
+}
+
 struct DiscoverCategoriesView: View {
     
     var categories: [Category] = [
         .init(name: "Art", imageName: "paintpalette.fill"),
-        .init(name: "Sport", imageName: "sportscourt.fill"),
+        .init(name: "Sports", imageName: "sportscourt.fill"),
         .init(name: "Live Events", imageName: "music.mic"),
         .init(name: "Food", imageName: "music.mic"),
         .init(name: "History", imageName: "music.mic")
@@ -22,7 +34,7 @@ struct DiscoverCategoriesView: View {
             HStack(alignment: .top, spacing: 14) {
                 ForEach(categories, id: \.self) { category in
                     NavigationLink(
-                        destination: CategoryDetailsView(),
+                        destination: NavigationLazyView(CategoryDetailsView(name: category.name)),
                         label: {
                             VStack(spacing: 8) {
                                 Image(systemName: category.imageName)
