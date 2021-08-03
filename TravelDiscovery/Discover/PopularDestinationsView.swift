@@ -52,9 +52,9 @@ struct PopularDestinationDetailsView: View {
     @State var isShowingAttractions = false
     
     let attractions: [Attraction] = [
-        .init(name: "Eiffel Tower", latitude: 48.858605, longitude: 2.2946),
-        .init(name: "Champs-Elysees", latitude: 48.866867, longitude: 2.311780),
-        .init(name: "Louvre Museum", latitude: 48.860288, longitude: 2.337789)
+        .init(name: "Eiffel Tower", imageName: "eiffel_tower", latitude: 48.858605, longitude: 2.2946),
+        .init(name: "Champs-Elysees", imageName: "new_york", latitude: 48.866867, longitude: 2.311780),
+        .init(name: "Louvre Museum", imageName: "art2", latitude: 48.860288, longitude: 2.337789)
     ]
     
     init(destination: Destination) {
@@ -109,17 +109,54 @@ struct PopularDestinationDetailsView: View {
             
             // we use $ before the region variable because it is a binding variable.
             Map(coordinateRegion: $region, annotationItems: isShowingAttractions ? attractions : []) { attraction in
-                MapMarker(coordinate: .init(latitude: attraction.latitude, longitude: attraction.longitude), tint: .red)
+//                MapMarker(coordinate: .init(latitude: attraction.latitude, longitude: attraction.longitude), tint: .red)
+                
+                MapAnnotation(coordinate: .init(latitude: attraction.latitude, longitude: attraction.longitude)) {
+                    CustomMapAnnotation(attraction: attraction)
+                }
             }.frame(height: 300)
             
         }.navigationBarTitle(destination.name, displayMode: .inline)
     }
 }
 
+struct CustomMapAnnotation: View {
+    
+    let attraction: Attraction
+    
+    var body: some View {
+        VStack {
+            Image(attraction.imageName)
+                .resizable()
+                .frame(width: 80, height: 60)
+                .cornerRadius(4)
+                // To create border around the text. We use .overlay instead of .border cuz the .border does not look as perfect as .overlay when we add .cornerRadius.
+                .overlay(
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(Color(.init(white: 0, alpha: 0.3)))
+                )
+            
+            Text(attraction.name)
+                .font(.system(size: 12, weight: .semibold))
+                .padding(.horizontal, 6)
+                .padding(.vertical, 4)
+                .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                .foregroundColor(.white)
+                .cornerRadius(4)
+                // To create border around the text. We use .overlay instead of .border cuz the .border does not look as perfect as .overlay when we add .cornerRadius.
+                .overlay(
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(Color(.init(white: 0, alpha: 0.3)))
+                )
+            
+        }.shadow(radius: 5)
+    }
+}
+
 struct Attraction: Identifiable {
     // id is the var from conforming Identifiable
     let id = UUID().uuidString
-    let name: String
+    let name, imageName: String
     let latitude, longitude: Double
 }
 
