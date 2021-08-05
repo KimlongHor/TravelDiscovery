@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct Destination: Hashable {
+struct Destination: Decodable, Hashable {
     let name, country, imageName: String
+//    let description: String
+//    let thumbnail: String
+//    let photos: [String]
     let latitude, longitude: Double
 }

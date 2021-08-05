@@ -30,7 +30,7 @@ struct PopularDestinationsView: View {
                 HStack(spacing: 8) {
                     ForEach(destinations, id: \.self) { destination in
                         NavigationLink(
-                            destination: PopularDestinationDetailsView(destination: destination),
+                            destination: NavigationLazyView(PopularDestinationDetailsView(destination: destination)),
                             label: {
                                 PopularDestinationTile(destination: destination)
                                     .padding(.bottom)
@@ -43,6 +43,40 @@ struct PopularDestinationsView: View {
     }
 }
 
+struct DestinationDetails: Decodable {
+    let description: String
+    let photos: [String]
+}
+
+class DestinationDetailsViewModel: ObservableObject {
+    
+    @Published var isLoading = true
+    @Published var destinationDetails: DestinationDetails?
+    
+    init(name: String) {
+        let urlString = "https://travel.letsbuildthatapp.com/travel_discovery/destination?name=\(name.lowercased())".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                print("Failed to fetch data from LBTA - PopularDestinationDetailView", error)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                guard let data = data else { return }
+                
+                do {
+                    self.destinationDetails = try JSONDecoder().decode(DestinationDetails.self, from: data)
+                } catch {
+                    print("Failed to decode JSON:", error)
+                }
+            }
+        }.resume()
+    }
+}
+
 struct PopularDestinationDetailsView: View {
     
     let destination: Destination
@@ -50,6 +84,8 @@ struct PopularDestinationDetailsView: View {
     // we put @State before the region variable because it is a binding variable, which means every time we move the map, this variable keeps changing.
     @State var region: MKCoordinateRegion
     @State var isShowingAttractions = false
+    
+    @ObservedObject var vm: DestinationDetailsViewModel
     
     let attractions: [Attraction] = [
         .init(name: "Eiffel Tower", imageName: "eiffel_tower", latitude: 48.858605, longitude: 2.2946),
@@ -59,16 +95,17 @@ struct PopularDestinationDetailsView: View {
     
     init(destination: Destination) {
         self.destination = destination
+        self.vm = .init(name: destination.name)
         self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)))
     }
     
     var body: some View {
         ScrollView {
-            Image(destination.imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(height: 150)
-                .clipped()
+            
+            if let photos = vm.destinationDetails?.photos {
+                DestinationHeaderContainer(imageUrlStrings:  photos)
+                    .frame(height: 250)
+            }
             
             VStack(alignment: .leading) {
                 Text(destination.name)
@@ -82,7 +119,7 @@ struct PopularDestinationDetailsView: View {
                     }
                 }.padding(.top, 2)
                 
-                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+                Text(vm.destinationDetails?.description ?? "")
                     .padding(.top, 4)
                     .font(.system(size: 15))
                 
