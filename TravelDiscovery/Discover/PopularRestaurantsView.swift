@@ -28,41 +28,56 @@ struct PopularRestaurantsView: View {
             ScrollView(.horizontal) {
                 HStack(spacing: 8) {
                     ForEach(restaurant, id: \.self) { restaurant in
-                        HStack(alignment: .center, spacing: 8) {
-                            Image(restaurant.imageName)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 60, height: 60)
-                                .clipped()
-                                .cornerRadius(5)
-                                .padding(.leading, 6)
-                                .padding(.vertical, 6)
-                            
-                            VStack(alignment: .leading, spacing: 6) {
-                                HStack {
-                                    Text(restaurant.name)
-                                    Spacer()
-                                    Button(action: {}, label: {
-                                        Image(systemName: "ellipsis")
-                                            .foregroundColor(.gray)
-                                    })
-                                }
-                                    .padding(.trailing)
-                                
-                                HStack(alignment: .center) {
-                                    Image(systemName: "star.fill")
-                                    Text("4.7 • Sushi • $$")
-                                }
-                                Text("Tokyo, Japan")
-                            }.font(.system(size: 12, weight: .semibold))
-                        }
-                        .frame(width: 240)
-                        .modifier(TileModifer())
-                        .padding(.bottom)
+                        NavigationLink(
+                            destination:
+                                RestaurantDetailsView(restaurant: restaurant),
+                            label: {
+                                RestaurantTile(restaurant: restaurant)
+                                    .padding(.bottom)
+                        })
                     }
                 }.padding(.horizontal)
             }
         }
+    }
+}
+
+struct RestaurantTile: View {
+    
+    let restaurant: Restaurant
+    
+    var body: some View {
+        HStack(alignment: .center, spacing: 8) {
+            Image(restaurant.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 60, height: 60)
+                .clipped()
+                .cornerRadius(5)
+                .padding(.leading, 6)
+                .padding(.vertical, 6)
+            
+            VStack(alignment: .leading, spacing: 6) {
+                HStack {
+                    Text(restaurant.name)
+                    Spacer()
+                    Button(action: {}, label: {
+                        Image(systemName: "ellipsis")
+                            .foregroundColor(.gray)
+                    })
+                }
+                    .padding(.trailing)
+                
+                HStack(alignment: .center) {
+                    Image(systemName: "star.fill")
+                    Text("4.7 • Sushi • $$")
+                }
+                Text("Tokyo, Japan")
+            }.font(.system(size: 12, weight: .semibold))
+            .foregroundColor(Color(.label))
+        }
+        .frame(width: 240)
+        .modifier(TileModifer())
     }
 }
 
