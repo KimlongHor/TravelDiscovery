@@ -13,6 +13,7 @@
 		605F2AA726AF53F40060809F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605F2AA626AF53F40060809F /* Assets.xcassets */; };
 		605F2AAA26AF53F40060809F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605F2AA926AF53F40060809F /* Preview Assets.xcassets */; };
 		60629E8E26BC7C9B00072561 /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60629E8D26BC7C9B00072561 /* RestaurantDetailsView.swift */; };
+		6067BB9426BDEBFF006BC6F0 /* RestaurantPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067BB9326BDEBFF006BC6F0 /* RestaurantPhotosView.swift */; };
 		607E99AD26B3827E007B50B2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 607E99AC26B3827E007B50B2 /* Kingfisher */; };
 		607E99B126B382F3007B50B2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 607E99B026B382F3007B50B2 /* SDWebImageSwiftUI */; };
 		607E99B526B384B4007B50B2 /* CategoryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E99B426B384B4007B50B2 /* CategoryDetailsView.swift */; };
@@ -38,6 +39,7 @@
 		605F2AA926AF53F40060809F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		605F2AAB26AF53F40060809F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60629E8D26BC7C9B00072561 /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
+		6067BB9326BDEBFF006BC6F0 /* RestaurantPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPhotosView.swift; sourceTree = "<group>"; };
 		607E99B426B384B4007B50B2 /* CategoryDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailsView.swift; sourceTree = "<group>"; };
 		607E99B726B38543007B50B2 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		607E99BA26B38580007B50B2 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				60629E8D26BC7C9B00072561 /* RestaurantDetailsView.swift */,
+				6067BB9326BDEBFF006BC6F0 /* RestaurantPhotosView.swift */,
 			);
 			path = Restaurant;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				605F2AA526AF53F20060809F /* DiscoverView.swift in Sources */,
 				605F2AA326AF53F20060809F /* TravelDiscoveryApp.swift in Sources */,
 				60B20D6626B0AE13005267AE /* Destination.swift in Sources */,
+				6067BB9426BDEBFF006BC6F0 /* RestaurantPhotosView.swift in Sources */,
 				607E99B826B38543007B50B2 /* ActivityIndicatorView.swift in Sources */,
 				607E99B526B384B4007B50B2 /* CategoryDetailsView.swift in Sources */,
 			);
