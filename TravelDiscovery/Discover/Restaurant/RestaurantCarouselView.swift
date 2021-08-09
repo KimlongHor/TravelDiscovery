@@ -1,18 +1,19 @@
 //
-//  DestinationHeaderContainer.swift
+//  RestaurantCarouselView.swift
 //  TravelDiscovery
 //
-//  Created by horkimlong on 3/8/21.
+//  Created by horkimlong on 9/8/21.
 //
 
 import SwiftUI
 import Kingfisher
 
-struct DestinationHeaderContainer: UIViewControllerRepresentable {
+struct RestaurantCarouselView: UIViewControllerRepresentable {
     let imageUrlStrings: [String]
+    let selectedIndex: Int
     
     func makeUIViewController(context: Context) -> UIViewController {
-        let pvc = CustomPageViewController(imageUrlStrings: imageUrlStrings)
+        let pvc = CarouselPageViewController(imageUrlStrings: imageUrlStrings, selectedIndex: selectedIndex)
         return pvc
     }
     
@@ -21,27 +22,31 @@ struct DestinationHeaderContainer: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
-class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class CarouselPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var allControllers: [UIViewController] = []
+    var selectedIndex: Int
     
-    init(imageUrlStrings: [String]) {
+    init(imageUrlStrings: [String], selectedIndex: Int) {
+        self.selectedIndex = selectedIndex
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
         allControllers = imageUrlStrings.map({ imageUrlString in
             let hostingController = UIHostingController(rootView:
+                ZStack {
+                    Color.black
                     KFImage(URL(string: imageUrlString))
                         .resizable()
-                        .scaledToFill()
+                        .scaledToFit()
+                }
             )
             
             hostingController.view.clipsToBounds = true
             
             return hostingController
         })
-        
-        if let first = allControllers.first {
-            setViewControllers([first], direction: .forward, animated: true, completion: nil)
+        if selectedIndex < allControllers.count {
+            setViewControllers([allControllers[selectedIndex]], direction: .forward, animated: true, completion: nil)
         }
         
         // set color for the page indicator (or the dot below the page controller)
@@ -70,7 +75,7 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return 0
+        return selectedIndex
     }
     
     required init?(coder: NSCoder) {
@@ -78,7 +83,7 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
     }
 }
 
-struct DestinationHeaderContainer_Previews: PreviewProvider {
+struct RestaurantCarouselView_Previews: PreviewProvider {
     
     static let imageUrlStrings = [
         "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/6982cc9d-3104-4a54-98d7-45ee5d117531",
@@ -86,6 +91,6 @@ struct DestinationHeaderContainer_Previews: PreviewProvider {
     ]
     
     static var previews: some View {
-        DestinationHeaderContainer(imageUrlStrings: imageUrlStrings)
+        RestaurantCarouselView(imageUrlStrings: imageUrlStrings, selectedIndex: 1)
     }
 }

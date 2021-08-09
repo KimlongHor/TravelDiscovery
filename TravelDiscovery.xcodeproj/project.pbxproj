@@ -28,6 +28,7 @@
 		60B20D6926B0AE3E005267AE /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B20D6826B0AE3E005267AE /* Restaurant.swift */; };
 		60B20D6C26B0AE49005267AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B20D6B26B0AE49005267AE /* User.swift */; };
 		60B20D6F26B0AE5A005267AE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B20D6E26B0AE5A005267AE /* Category.swift */; };
+		60D9744026C1D54800529B2E /* RestaurantCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D9743F26C1D54800529B2E /* RestaurantCarouselView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		60B20D6826B0AE3E005267AE /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		60B20D6B26B0AE49005267AE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		60B20D6E26B0AE5A005267AE /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		60D9743F26C1D54800529B2E /* RestaurantCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCarouselView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			children = (
 				60629E8D26BC7C9B00072561 /* RestaurantDetailsView.swift */,
 				6067BB9326BDEBFF006BC6F0 /* RestaurantPhotosView.swift */,
+				60D9743F26C1D54800529B2E /* RestaurantCarouselView.swift */,
 			);
 			path = Restaurant;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				60629E8E26BC7C9B00072561 /* RestaurantDetailsView.swift in Sources */,
 				60B20D5D26B0AD58005267AE /* DiscoverCategoriesView.swift in Sources */,
 				602B417826B1F2D500446D1C /* TileModifier.swift in Sources */,
+				60D9744026C1D54800529B2E /* RestaurantCarouselView.swift in Sources */,
 				60B20D6F26B0AE5A005267AE /* Category.swift in Sources */,
 				60B20D5726B0AC28005267AE /* PopularDestinationsView.swift in Sources */,
 				60B20D6126B0ADA4005267AE /* TrendingCreatorsView.swift in Sources */,
